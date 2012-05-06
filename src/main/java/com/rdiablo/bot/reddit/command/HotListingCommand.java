@@ -2,7 +2,6 @@ package com.rdiablo.bot.reddit.command;
 
 import java.io.IOException;
 
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import us.davidandersen.reddit.RedditApi;
@@ -22,8 +21,6 @@ public class HotListingCommand implements RedditBotCommand {
 			final String subReddit = RedditBot.getSubReddit(message, redditBot.defaultReddit);
 			printer.print(api.getHotListings(subReddit));
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}

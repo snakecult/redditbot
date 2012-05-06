@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.json.JSONException;
 
 import com.google.gson.Gson;
 
@@ -18,19 +17,19 @@ public class RedditApi {
 
 	private Logger log = Logger.getLogger(RedditApi.class);
 
-	public List<Listing> getNewListings(String subReddit) throws IOException, JSONException {
+	public List<Listing> getNewListings(String subReddit) throws IOException {
 		return getListings("http://www.reddit.com/r/" + subReddit + "/new.json?sort=new");
 	}
 
-	public List<Listing> getRisingListings(String subReddit) throws IOException, JSONException {
+	public List<Listing> getRisingListings(String subReddit) throws IOException {
 		return getListings("http://www.reddit.com/r/" + subReddit + "/new.json?sort=rising");
 	}
 
-	public List<Listing> getHotListings(String subReddit) throws IOException, JSONException {
+	public List<Listing> getHotListings(String subReddit) throws IOException {
 		return getListings("http://www.reddit.com/r/" + subReddit + ".json");
 	}
 
-	private List<Listing> getListings(String sUrl) throws MalformedURLException, IOException, JSONException {
+	private List<Listing> getListings(String sUrl) throws MalformedURLException, IOException {
 		final URL url = new URL(sUrl);
 		log.debug("url=" + sUrl);
 		final String json = getJson(url);
@@ -39,7 +38,7 @@ public class RedditApi {
 		return listings;
 	}
 
-	private List<Listing> convertListings(String json) throws JSONException {
+	private List<Listing> convertListings(String json) {
 
 		final List<Listing> listings = new ArrayList<Listing>();
 		final Gson gson = new Gson();

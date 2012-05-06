@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.json.JSONException;
 
 import us.davidandersen.reddit.Listing;
 import us.davidandersen.reddit.RedditApi;
@@ -26,8 +25,6 @@ public class NewListingDaemon extends Thread {
 			}
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
-		} catch (JSONException e) {
-			log.error(e.getMessage(), e);
 		} catch (InterruptedException e) {
 			log.error(e.getMessage(), e);
 		}
@@ -41,7 +38,7 @@ public class NewListingDaemon extends Thread {
 		startTime = time;
 	}
 
-	private void process() throws IOException, JSONException {
+	private void process() throws IOException {
 		final RedditApi api = new RedditApi();
 		List<Listing> listings = api.getNewListings("diablo");
 		Listing newest = listings.get(0);
